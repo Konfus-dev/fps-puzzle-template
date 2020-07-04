@@ -63,13 +63,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\DoorOpener.cs" />
-    <Compile Include="Assets\Scripts\Doors.cs" />
-    <Compile Include="Assets\Scripts\GravGlove.cs" />
-    <Compile Include="Assets\Scripts\Look.cs" />
-    <Compile Include="Assets\Scripts\Move.cs" />
-    <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
-    <Compile Include="Assets\Scripts\Teleporter.cs" />
+    <Compile Include="Assets\Scripts\Interactables\DoorOpener.cs" />
+    <Compile Include="Assets\Scripts\Interactables\Doors.cs" />
+    <Compile Include="Assets\Scripts\Interactables\Teleporter.cs" />
+    <Compile Include="Assets\Scripts\Other\SimpleCameraController.cs" />
+    <Compile Include="Assets\Scripts\Player\GravGlove.cs" />
+    <Compile Include="Assets\Scripts\Player\Look.cs" />
+    <Compile Include="Assets\Scripts\Player\Move.cs" />
     <Compile Include="Assets\Shader\UnityChanToonShaderVer2_Project-master\Assets\Animations\Rotator.cs" />
     <Compile Include="Assets\Shader\UnityChanToonShaderVer2_Project-master\Assets\Post Effect Mask\Scripts\PostEffectMask.cs" />
     <Compile Include="Assets\Shader\UnityChanToonShaderVer2_Project-master\Assets\Post Effect Mask\Scripts\PostEffectMaskRenderer.cs" />

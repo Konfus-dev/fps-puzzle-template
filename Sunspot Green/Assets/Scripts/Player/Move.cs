@@ -23,7 +23,6 @@ public class Move : MonoBehaviour
     private Rigidbody Rig;
     private float AdjustSpeed;
     private float BaseFOV;
-    private Vector3 OldDirection;
     void Awake()
     {
         AdjustSpeed = MovementSpeed;
@@ -45,7 +44,7 @@ public class Move : MonoBehaviour
 
         //basic movement
         Vector3 direction = new Vector3(hMove, 0, vMove);
-        direction.Normalize();
+        //direction.Normalize();
 
         Sprint(sprint);
 

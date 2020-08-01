@@ -23,11 +23,14 @@ public class Move : MonoBehaviour
     private Rigidbody Rig;
     private float AdjustSpeed;
     private float BaseFOV;
+    private Jump Jumper;
+
     void Awake()
     {
         AdjustSpeed = MovementSpeed;
-        Rig = GetComponent<Rigidbody>();
+        Rig = this.GetComponent<Rigidbody>();
         BaseFOV = PlayerCamera.fieldOfView;
+        Jumper = this.GetComponent<Jump>();
     }
 
     //Fixed update to manipulate physics
@@ -38,23 +41,15 @@ public class Move : MonoBehaviour
         float vMove = Input.GetAxisRaw("Vertical");
         bool sprint = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         bool crouch = Input.GetKeyDown(KeyCode.LeftControl);
-        //bool jump = Input.GetKeyDown(KeyCode.Space);
-
-        bool isSprinting = sprint; /*&& !jump;*/
+        bool isGrounded = Jumper.isGrounded;
 
         //basic movement
         Vector3 direction = new Vector3(hMove, 0, vMove);
-        //direction.Normalize();
+        direction.Normalize();
 
-        Sprint(sprint);
-
-        //if (jump)
-        //{
-         //   Rig.AddForce(Vector3.up * JumpForce);
-        //}
-
-        /*else*/ if (sprint)
+        if (sprint && isGrounded)
         {
+            Sprint(sprint);
             AdjustSpeed = Mathf.Lerp(AdjustSpeed, MovementSpeed * SprintMod, Time.fixedDeltaTime * GetToSpeed);
         }
         else if (crouch)

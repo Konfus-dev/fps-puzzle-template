@@ -1,2 +1,2 @@
-# Sunspot-Green
-First person puzzle game VERY unfinished, literally almost nothing... but hey it's a start :D 
+# FPS Puzzle Template
+First person puzzle template with ability to grab objects and a standard rigidbody fps controller.

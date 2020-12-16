@@ -4,46 +4,42 @@ using UnityEngine;
 
 public class GravGlove : MonoBehaviour
 {
-    public float GrabDist = 5;
-    public float GrabbedMoveSpeed = 10;
+    public float grabDist = 5;
+    public float grabbedMoveSpeed = 10;
     public float smoothTime = 0.3F;
-    public Transform GrabPos;
-    public GameObject GrabbedObj;
 
-    private RaycastHit Hit;
-    private bool NoGrab = false;
-    private Vector3 velocity = Vector3.zero;
+    public Transform cam;
+    public GameObject grabbedObj;
 
-    void FixedUpdate()
+    private RaycastHit hit;
+
+    private void FixedUpdate()
     {
         bool grab = Input.GetMouseButton(0);
-        if(!NoGrab)
+
+        if (grab)
         {
-            Vector3 castPos = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.1f);
+            Vector3 velocity = Vector3.zero;
+
+            Vector3 castPos = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.2f);
 
             //if holding left click down and have hit and hit has rigidbody
-            if (grab && Physics.Raycast(castPos, transform.forward, out Hit, GrabDist) && Hit.transform.GetComponent<Rigidbody>())
+            if (grab && Physics.Raycast(castPos, transform.forward, out hit, grabDist) && hit.transform.GetComponent<Rigidbody>())
             {
-                if(GrabbedObj == null) GrabbedObj = Hit.transform.gameObject;
+                if (grabbedObj == null) grabbedObj = hit.transform.gameObject;
             }
             else if (!grab)
             {
-                GrabbedObj = null;
+                grabbedObj = null;
             }
 
             //manipulate grabbed thing
-            if (GrabbedObj)
+            if (grabbedObj)
             {
-                GrabbedObj.GetComponent<Rigidbody>().velocity = 
-                    Vector3.SmoothDamp(GrabbedObj.GetComponent<Rigidbody>().velocity, (GrabPos.position - GrabbedObj.transform.position) * GrabbedMoveSpeed, ref velocity, smoothTime);
+                grabbedObj.GetComponent<Rigidbody>().velocity =
+                    Vector3.SmoothDamp(grabbedObj.GetComponent<Rigidbody>().velocity, ((cam.position + cam.up * .1f + cam.forward * 1.8f) - grabbedObj.transform.position) * grabbedMoveSpeed, ref velocity, smoothTime);
             }
         }
-        if (!grab) NoGrab = false;
-    }
-
-    public void NoGrabby()
-    {
-        GrabbedObj = null;
-        NoGrab = true;
+        else grabbedObj = null;
     }
 }

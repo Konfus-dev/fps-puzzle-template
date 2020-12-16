@@ -8,14 +8,6 @@ public class DoorOpener : MonoBehaviour
     public Transform KeyPos;
     public string Tag;
 
-    private GravGlove Grav;
-
-
-    private void Awake()
-    {
-        Grav = GameObject.Find("PlayerCam").GetComponent<GravGlove>();
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -26,7 +18,6 @@ public class DoorOpener : MonoBehaviour
     {
         if(col.gameObject.CompareTag(Tag))
         {
-            Grav.NoGrabby();
             col.transform.position = KeyPos.position;
             col.transform.rotation = KeyPos.rotation;
             col.rigidbody.useGravity = false;

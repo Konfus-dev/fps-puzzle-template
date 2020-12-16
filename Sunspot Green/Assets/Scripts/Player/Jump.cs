@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    public OnTriggers Trigger;
+    public Trigger Trigger;
     public int JumpForce;
     public bool isGrounded;
 

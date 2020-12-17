@@ -8,6 +8,8 @@ public class Teleporter : MonoBehaviour
     public Teleporter linkedTeleporter;
     public bool canTeleport = true;
 
+    //TODO: this still needs to be implemented!!!
+
     private void OnTriggerEnter(Collider col)
     {
 
